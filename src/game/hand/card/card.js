@@ -5,7 +5,6 @@ class Card extends Component {
   render() {
     const { rank, suit } = this.props;
     const card = `card rank-${rank.toLowerCase()} ${suit}`;
-    console.log("-----> ", card);
     return (
       <span className={card}>
         <span className="rank">{rank}</span>

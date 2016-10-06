@@ -2,7 +2,7 @@ import React, { Component }  from 'react';
 
 import './game.css';
 
-import { Hand, Card } from './hand';
+import { Hand } from './hand';
 import { createHands, evaluateHand } from './poker';
 
 class Game extends Component {
@@ -25,13 +25,6 @@ class Game extends Component {
     return (
       <div>
         <h3>Computer Hand</h3>
-
-        <div className="playingCards">
-          <Card rank="7" suit="spades"  />
-          <Card rank="J" suit="spades"  />
-        </div>
-
-
         <Hand hand={computerHand} />
         <h3>Your Hand</h3>
         <Hand hand={playerHand} />
