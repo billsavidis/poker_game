@@ -1,0 +1,15 @@
+.App {
+  text-align: center;
+  background-color: #993;
+}
+
+.App-header {
+  background-color: #152;
+  height: 80px;
+  padding: 20px;
+  color: white;
+}
+
+.Hands {
+  padding: 30px;
+}
