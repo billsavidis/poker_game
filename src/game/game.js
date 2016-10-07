@@ -9,11 +9,13 @@ class Game extends Component {
 
   dealNextHand() {
     this.forceUpdate();
+    console.log("------------");
   }
 
   evaluate(playerHandEval, computerHandEval) {
-    console.log("Player has", playerHandEval);
-    console.log("Computer has", computerHandEval);
+    console.log("Player has", playerHandEval[0]);
+    console.log("Computer has", computerHandEval[0]);
+    playerHandEval[1] > computerHandEval[1] ? ( console.log("Player wins this hand!") ) : ( console.log("Computer wins this hand!") );
   }
 
   render() {
