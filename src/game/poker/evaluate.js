@@ -120,7 +120,7 @@ function evaluateHand (unsortedHand) {
   //Just a high card
   else {
   	highCard = true;
-  	highCardRank = hand[0].weight === 1 ? hand[0].rank : hand[4].rank;
+  	highCardRank = hand[0].weight === 14 ? hand[0].rank : hand[4].rank;
     handStrength = hand[0].weight === 1 ? ( 1000 + hand[0].weight )
       : ( 1000 + hand[4].weight );
   }

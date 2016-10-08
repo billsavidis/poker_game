@@ -1,6 +1,5 @@
 import React, { Component }  from 'react';
-
-import './game.css';
+import ReactDom from 'react-dom';
 
 import { Hand } from './hand';
 import { createHands, evaluateHand } from './poker';
@@ -8,14 +7,17 @@ import { createHands, evaluateHand } from './poker';
 class Game extends Component {
 
   dealNextHand() {
+    ReactDom.unmountComponentAtNode(document.getElementById('evaluation'));
     this.forceUpdate();
-    console.log("------------");
   }
 
   evaluate(playerHandEval, computerHandEval) {
-    console.log("Player has", playerHandEval[0]);
-    console.log("Computer has", computerHandEval[0]);
-    playerHandEval[1] > computerHandEval[1] ? ( console.log("Player wins this hand!") ) : ( console.log("Computer wins this hand!") );
+    let winner = playerHandEval[1] > computerHandEval[1] ?
+      "Player wins this hand!" : "Computer wins this hand!";
+    ReactDom.render(<Evaluation player={playerHandEval[0]}
+      computer={computerHandEval[0]}
+      winner={winner}
+       />, document.getElementById('evaluation'));
   }
 
   render() {
@@ -36,6 +38,21 @@ class Game extends Component {
         <button onClick={this.dealNextHand.bind(this)}>
           Deal next hand!
         </button>
+        <div id="evaluation"></div>
+      </div>
+    )
+  }
+};
+
+class Evaluation extends Component {
+  render() {
+    const { player, computer, winner } = this.props;
+    return (
+      <div>
+        <h2>Evaluation</h2>
+        Player has {player} <br></br>
+        Computer has {computer} <br></br>
+        {winner}
       </div>
     )
   }
