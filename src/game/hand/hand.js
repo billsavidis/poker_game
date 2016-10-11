@@ -3,10 +3,10 @@ import { Card } from './card';
 
 let keyId = 0;
 
-const Hand = ({ hand }) => (
+const Hand = ({ hand, show }) => (
   <div className="playingCards simpleCards">
     {hand.map(({rank, suit}) => (
-      <Card rank={rank} suit={suit} key={`Hand-id-${keyId++}`} />
+      <Card rank={rank} suit={suit} key={`Hand-id-${keyId++}`} show={show} />
     ))}
   </div>
 );

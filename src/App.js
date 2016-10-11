@@ -9,8 +9,8 @@ class App extends Component {
         <div className="App-header">
           <h2>Welcome to Wonderful Poker!</h2>
         </div>
-        <div className="Hands">
-          <Game />
+        <div className="Hands" id="ourGame">
+          <Game showComputerHand={false} showPlayerHand={true}/>
         </div>
       </div>
     );
