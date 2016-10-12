@@ -14,7 +14,6 @@ class Card extends Component {
   }
 }
 
-
 export {
   Card,
 };
