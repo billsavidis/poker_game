@@ -3,13 +3,13 @@ import './cards.css';
 
 class Card extends Component {
   render() {
-    const { rank, suit, show } = this.props;
-    const card = (show) ? `card rank-${rank.toLowerCase()} ${suit}` : `card back`;
+    const { rank, suit } = this.props;
+    const card = `card rank-${rank.toLowerCase()} ${suit}`;
     return (
-      <div className={card}>
+      <span className={card}>
         <span className="rank">{rank}</span>
         <span className="suit" dangerouslySetInnerHTML={{__html: `&${suit};`}}></span>
-      </div>
+      </span>
     );
   }
 }
