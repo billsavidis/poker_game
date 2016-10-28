@@ -1,27 +1,17 @@
 import React, { Component }  from 'react';
 import ReactDom from 'react-dom';
 import { createStore } from 'redux';
-
 import { Hand } from './hand';
 import { createHands, evaluateHand } from './poker';
 import { evaluate } from './evaluation';
+import { handControl } from './reducers';
 
-const testReducer = (state = 0, action) => {
-  let newHands = createHands();
-  switch (action.type) {
-    case 'ADD_HAND':
-      return newHands;
-    default:
-      return state;
-  }
-}
-
-const store = createStore(testReducer);
+const store = createStore(handControl);
 
 const updateHands = () => {
   store.dispatch({type: 'ADD_HAND'});
 };
-updateHands();
+updateHands(); //generate first hand
 
 class Game extends Component {
 
@@ -31,18 +21,18 @@ class Game extends Component {
   }
 
   render() {
-    let updatedPlayerHand = store.getState()[0];
-    let updatedComputerHand = store.getState()[1];
-    let playerHandEval = evaluateHand(updatedPlayerHand);
-    let computerHandEval = evaluateHand(updatedComputerHand);
+    let updatedHostHand = store.getState().hands[0];
+    let updatedVisitorHand = store.getState().hands[1];
+    let hostHandEval = evaluateHand(updatedHostHand);
+    let visitorHandEval = evaluateHand(updatedVisitorHand);
 
     return (
       <div>
-        <h3>Computer Hand</h3>
-        <Hand hand={updatedComputerHand} />
-        <h3>Your Hand</h3>
-        <Hand hand={updatedPlayerHand} />
-        <button onClick={() => evaluate(playerHandEval, computerHandEval)}>
+        <h3>Visitor Hand</h3>
+        <Hand hand={updatedVisitorHand} visible={store.getState().visitorHandVisibility} />
+        <h3>Host Hand</h3>
+        <Hand hand={updatedHostHand} visible={store.getState().hostHandVisibility} />
+        <button onClick={() => evaluate(hostHandEval, visitorHandEval)}>
           Evaluate!
         </button>
         <button onClick={() => this.dealNextHand()}>

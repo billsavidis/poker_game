@@ -1,26 +1,28 @@
 import React, { Component }  from 'react';
 import ReactDom from 'react-dom';
+import { store } from '../game';
 
 class Evaluation extends Component {
 
   render() {
-    const { player, computer, winner } = this.props;
+    const { host, visitor, winner } = this.props;
     return (
       <div>
         <h2>Evaluation</h2>
-        Player has {player} <br></br>
-        Computer has {computer} <br></br>
+        Host has {host} <br></br>
+        Visitor has {visitor} <br></br>
         {winner}
       </div>
     )
   }
 };
 
-let evaluate = (playerHandEval, computerHandEval) => {
-  let winner = playerHandEval[1] > computerHandEval[1] ?
-    "Player wins this hand!" : "Computer wins this hand!";
-  ReactDom.render(<Evaluation player={playerHandEval[0]}
-    computer={computerHandEval[0]}
+let evaluate = (hostHandEval, visitorHandEval) => {
+  store.dispatch({type: "TOGGLE_HAND_VISIBILITY"});
+  let winner = hostHandEval[1] > visitorHandEval[1] ?
+    "Host wins this hand!" : "Visitor wins this hand!";
+  ReactDom.render(<Evaluation host={hostHandEval[0]}
+    visitor={visitorHandEval[0]}
     winner={winner}
      />, document.getElementById('evaluation'));
 }

@@ -3,8 +3,8 @@ import './cards.css';
 
 class Card extends Component {
   render() {
-    const { rank, suit } = this.props;
-    const card = `card rank-${rank.toLowerCase()} ${suit}`;
+    const { rank, suit, visible } = this.props;
+    const card = visible ? `card rank-${rank.toLowerCase()} ${suit}`: `card back`;
     return (
       <span className={card}>
         <span className="rank">{rank}</span>
