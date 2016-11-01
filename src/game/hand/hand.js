@@ -1,6 +1,5 @@
 import React from 'react';
 import { Card } from './card';
-import { store } from '../game';
 
 let keyId = 0;
 const Hand = ({ hand, visible }) => (

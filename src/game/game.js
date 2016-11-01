@@ -2,7 +2,7 @@ import React, { Component }  from 'react';
 import ReactDom from 'react-dom';
 import { createStore } from 'redux';
 import { Hand } from './hand';
-import { createHands, evaluateHand } from './poker';
+import { evaluateHand } from './poker';
 import { evaluate } from './evaluation';
 import { handControl } from './reducers';
 

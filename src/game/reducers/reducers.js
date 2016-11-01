@@ -12,7 +12,7 @@ const handControl = (state = 0, action) => {
       return {
         hands: state.hands,
         hostHandVisibility: state.hostHandVisibility,
-        visitorHandVisibility: !state.visitorHandVisibility,
+        visitorHandVisibility: true,
       }
     default:
       return state;
