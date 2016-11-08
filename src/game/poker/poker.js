@@ -1,4 +1,4 @@
-var _ = require('underscore');
+var _ = require('lodash');
 
 const Ranks = [ '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A' ];
 const Suits = [ 'hearts', 'clubs', 'diams', 'spades' ];
@@ -21,6 +21,7 @@ function createHands () {
   let hands = [];
   hands[0] = newDeck.splice(0,5);
   hands[1] = newDeck.splice(0,5);
+  hands[2] = newDeck.splice(0,10);
   return hands;
 }
 
