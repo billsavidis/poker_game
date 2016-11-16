@@ -33,9 +33,9 @@ class Game extends Component {
     return (
       <div>
         <h3>Visitor Hand</h3>
-        <Hand hand={updatedVisitorHand} visible={store.getState().visitorHandVisibility} />
+        <Hand hand={updatedVisitorHand} visible={store.getState().visitorHandVisibility} canChangeCards={false} />
         <h3>Host Hand</h3>
-        <Hand hand={updatedHostHand} visible={store.getState().hostHandVisibility} />
+        <Hand hand={updatedHostHand} visible={store.getState().hostHandVisibility} canChangeCards={true} />
         <button onClick={() => evaluate(hostHandEval, visitorHandEval)}>
           Evaluate!
         </button>
