@@ -45,10 +45,6 @@ class Game extends Component {
         <button onClick={() => changeCards()}>
           Change cards!
         </button>
-        <div>
-          You have selected to change the following cards:
-          {store.getState().cardsToChange.map( (card) => ( `${card.rank} ${card.suit} ` ) )}
-        </div>
         <div id="evaluation"></div>
       </div>
     )
