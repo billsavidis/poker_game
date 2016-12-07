@@ -27,7 +27,8 @@ const handControl = (state = {}, action) => {
         hands: createHands(),
         hostHandVisibility: true,
         visitorHandVisibility: false,
-        cardsToChange: []
+        cardsToChange: [],
+        showEvaluation: false
       }
     case 'TOGGLE_HAND_VISIBILITY':
       return {
@@ -43,6 +44,11 @@ const handControl = (state = {}, action) => {
       return {
         ...state,
         hands: changeHand(state)
+      }
+    case 'TOGGLE_EVALUATION':
+      return {
+        ...state,
+        showEvaluation: !state.showEvaluation
       }
     default:
       return state;

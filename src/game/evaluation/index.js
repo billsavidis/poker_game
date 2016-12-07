@@ -1,7 +1,7 @@
 import {
-  evaluate,
+  Evaluation,
 } from './evaluation';
 
 export {
-  evaluate,
+  Evaluation,
 };

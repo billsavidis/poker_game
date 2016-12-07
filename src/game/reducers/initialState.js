@@ -4,7 +4,8 @@ const initialState = {
   hands: createHands(),
   hostHandVisibility: true,
   visitorHandVisibility: false,
-  cardsToChange: []
+  cardsToChange: [],
+  showEvaluation: false
 };
 
 export {
