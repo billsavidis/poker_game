@@ -2,17 +2,18 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import './index.css';
-import { store } from './game';
 import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import { handControl, initialState } from './game/reducers';
 
-const render = () => {
-  ReactDOM.render(
-    <Provider store={store}>
-      <App />
-    </Provider>,
-    document.getElementById('root')
-  );
-};
+const store = createStore(
+  handControl,
+  initialState
+);
 
-store.subscribe(render);
-render();
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+);

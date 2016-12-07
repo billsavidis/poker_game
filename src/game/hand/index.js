@@ -1,6 +1,4 @@
-import {
-  Hand,
-} from './hand';
+import Hand from './hand';
 
 export {
   Hand,

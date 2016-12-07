@@ -1,6 +1,5 @@
 import React, { Component }  from 'react';
 import ReactDom from 'react-dom';
-import { store } from '../game';
 
 class Evaluation extends Component {
 
@@ -17,8 +16,8 @@ class Evaluation extends Component {
   }
 };
 
-let evaluate = (hostHandEval, visitorHandEval) => {
-  store.dispatch({type: "TOGGLE_HAND_VISIBILITY"});
+let evaluate = (hostHandEval, visitorHandEval, toggleVisibility) => {
+  toggleVisibility();
   let winner = hostHandEval[1] > visitorHandEval[1] ?
     "Host wins this hand!" : "Visitor wins this hand!";
   ReactDom.render(<Evaluation host={hostHandEval[0]}
