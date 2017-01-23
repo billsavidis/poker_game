@@ -4,9 +4,14 @@ import {
 
 import {
   initialState,
-} from './initialState';
+} from './initialstate';
+
+import {
+  store,
+} from './store';
 
 export {
   handControl,
   initialState,
+  store,
 };

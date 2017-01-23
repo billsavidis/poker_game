@@ -1,15 +1,19 @@
 import React from 'react';
 import './App.css';
-import { Game } from './game';
+
+import { Board, Menu } from './components';
+
+import AppBar from 'material-ui/AppBar';
 
 const App = () => {
     return (
       <div className="App">
-        <div className="App-header">
-          <h2>Welcome to Wonderful Poker!</h2>
-        </div>
+        <AppBar title="Welcome to Wonderful Poker!"
+          style={{backgroundColor: '#152'}}
+          iconElementLeft={<Menu />}
+        />
         <div className="Hands">
-          <Game />
+          <Board />
         </div>
       </div>
     );

@@ -1,5 +1,6 @@
 var _ = require('lodash');
-import { createHands } from '../poker';
+import { createHands } from '../components/game/pokerlogic';
+import { initialState } from './initialstate';
 
 const addCard = (state, action) => {
   const { rank, suit, weight } = action;
@@ -23,18 +24,11 @@ const changeHand = (state) => {
 const handControl = (state = {}, action) => {
   switch (action.type) {
     case 'ADD_HAND':
-      return {
-        hands: createHands(),
-        hostHandVisibility: true,
-        visitorHandVisibility: false,
-        cardsToChange: [],
-        showEvaluation: false
-      }
-    case 'TOGGLE_HAND_VISIBILITY':
-      return {
-        ...state,
-        visitorHandVisibility: true,
-      }
+    return {
+      ...initialState,
+      hands: createHands(),
+      emptyBoard: false,
+    };
     case 'SELECT_CARD':
       return {
         ...state,
@@ -45,10 +39,17 @@ const handControl = (state = {}, action) => {
         ...state,
         hands: changeHand(state)
       }
-    case 'TOGGLE_EVALUATION':
+    case 'EVALUATE':
       return {
         ...state,
-        showEvaluation: !state.showEvaluation
+        visitorHandVisibility: true,
+        showEvaluation: !state.showEvaluation,
+        evaluated: true,
+      }
+    case 'DEAL_HAND':
+      return {
+        ...state,
+        emptyBoard: false,
       }
     default:
       return state;

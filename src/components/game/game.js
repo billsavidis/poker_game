@@ -1,19 +1,25 @@
 import React from 'react';
 import { Hand } from './hand';
-import { evaluateHand } from './poker';
-import { Evaluation } from './evaluation';
+import { evaluateHand, Evaluation } from './pokerlogic';
 import { connect } from 'react-redux';
 
-const evaluate = (toggleVisibility, showEvaluationBox) => {
-  toggleVisibility();
-  showEvaluationBox();
-}
+import RaisedButton from 'material-ui/RaisedButton';
+
+const buttonStyle = {
+  margin: 12,
+  padding: 5,
+};
+
+let NextHandButton = (props) => {
+  const { evaluated, updateHands } = props;
+  return evaluated ? <RaisedButton label="Deal next hand" onClick={() => updateHands()} style={buttonStyle} /> :
+    <RaisedButton label="Deal next hand" disabled={true} />
+};
 
 let Game = (props) => {
-
   const { updatedHostHand, updatedVisitorHand, changeCards,
-    visitorHandVisibility, hostHandVisibility, updateHands,
-    toggleVisibility, showEvaluation, showEvaluationBox } = props;
+    visitorHandVisibility, hostHandVisibility,
+    toggleVisibility, showEvaluation, showEvaluationBox, evaluate } = props;
   let hostHandEval = evaluateHand(updatedHostHand);
   let visitorHandEval = evaluateHand(updatedVisitorHand);
   let winner = hostHandEval[1] > visitorHandEval[1] ?
@@ -25,15 +31,9 @@ let Game = (props) => {
       <Hand hand={updatedVisitorHand} visible={visitorHandVisibility} canChangeCards={false} />
       <h3>Host Hand</h3>
       <Hand hand={updatedHostHand} visible={hostHandVisibility} canChangeCards={true} />
-      <button onClick={() => evaluate(toggleVisibility, showEvaluationBox)}>
-        Evaluate!
-      </button>
-      <button onClick={() => updateHands()}>
-        Deal next hand!
-      </button>
-      <button onClick={() => changeCards()}>
-        Change cards!
-      </button>
+      <RaisedButton label="Evaluate" onClick={() => evaluate(toggleVisibility, showEvaluationBox)} style={buttonStyle} />
+      <NextHandButton />
+      <RaisedButton label="Change cards" onClick={() => changeCards()} style={buttonStyle} />
       <Evaluation host={hostHandEval[0]} visitor={visitorHandEval[0]} winner={winner} showEvaluation={showEvaluation} />
     </div>
   )
@@ -58,13 +58,20 @@ const mapStateToProps = ({
 const mapDispatchToProps = (dispatch) => {
   return {
     changeCards: () => dispatch({type: 'CHANGE_CARDS'}),
-    updateHands: () => dispatch({type: 'ADD_HAND'}),
-    toggleVisibility: () => dispatch({type: 'TOGGLE_HAND_VISIBILITY'}),
-    showEvaluationBox: () => dispatch({type: 'TOGGLE_EVALUATION'})
+    evaluate: () => dispatch({type: 'EVALUATE'})
   };
 };
 
 Game = connect(mapStateToProps, mapDispatchToProps)(Game);
+
+NextHandButton = connect(
+  ((state) => ({
+    evaluated: state.evaluated,
+  })),
+  (dispatch) => ({
+    updateHands: () => dispatch({type: 'ADD_HAND'}),
+  })
+)(NextHandButton);
 
 export {
   Game,

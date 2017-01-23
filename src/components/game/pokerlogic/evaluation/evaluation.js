@@ -1,5 +1,7 @@
 import React, { Component }  from 'react';
 
+import CircularProgress from 'material-ui/CircularProgress';
+
 class Evaluation extends Component {
 
   render() {
@@ -13,7 +15,9 @@ class Evaluation extends Component {
       </div>
     ) :
     (
-      <div>Who will win?</div>
+      <div>
+        <CircularProgress thickness={6} />
+      </div>
     )
   }
 };
